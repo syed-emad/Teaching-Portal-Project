@@ -5,97 +5,97 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { Button } from "react-bootstrap";
 import { getUser, removeUserSession } from "../../Utils/Common";
-function  Admin(props) {
+function Admin(props) {
   var url_string = window.location.href;
   var url = new URL(url_string);
   var name = url.searchParams.get("name");
-const [value, setValue] = useState(null);
-const [valueuser, setValue2] = useState(null);
-const [ID, setID] = useState("");
- 
+  const [value, setValue] = useState(null);
+  const [valueuser, setValue2] = useState(null);
+  const [ID, setID] = useState("");
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-function refreshPage() {
-   window.location.reload(false);
- }
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
- function Callfunction(id){
-deleteteacher(id);
+  function Callfunction(id) {
+    deleteteacher(id);
     refreshPage();
- }
- function Callfunctionuser(id){
-    deleteuser(id);    
+  }
+  function Callfunctionuser(id) {
+    deleteuser(id);
     refreshPage();
- }
-   async function getSomething() {
-     try {
-       const response = await axios.get(`/api/teachers`);
+  }
+  async function getSomething() {
+    try {
+      const response = await axios.get(`/api/teachers`);
 
-       console.log(response.data);
-       setValue(response.data);
-     } catch (error) {
-       console.error(error);
-     }
-   }
-   async function getSomething2() {
-     try {
-       const response = await axios.get(`/api/users`);
-
-       console.log(response.data);
-       setValue2(response.data);
-     } catch (error) {
-       console.error(error);
-     }
-   }
-    async function deleteteacher(id) {
-      try {
-        const response = await axios.delete(`/api/teachers/teacherdelete?id=${id}`);
-
-        console.log(response.data);
-        setValue(response.data);
-      } catch (error) {
-        console.error(error);
-      }
+      console.log(response.data);
+      setValue(response.data);
+    } catch (error) {
+      console.error(error);
     }
-       async function deleteuser(id) {
-         try {
-           const response = await axios.delete(
-             `/api/users/userdelete?id=${id}`
-           );
+  }
+  async function getSomething2() {
+    try {
+      const response = await axios.get(`/api/users`);
 
-           console.log(response.data);
-           setValue(response.data);
-         } catch (error) {
-           console.error(error);
-         }
-       }
-       var subtitle;
-       const [modalIsOpen, setIsOpen] = React.useState(false);
-       function openModal() {
-         setIsOpen(true);
-       }
+      console.log(response.data);
+      setValue2(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async function deleteteacher(id) {
+    try {
+      const response = await axios.delete(
+        `/api/teachers/teacherdelete?id=${id}`
+      );
 
-       function afterOpenModal() {
-         // references are now sync'd and can be accessed.
-         subtitle.style.color = "#f00";
-       }
+      console.log(response.data);
+      setValue(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async function deleteuser(id) {
+    try {
+      const response = await axios.delete(`/api/users/userdelete?id=${id}`);
 
-       function closeModal() {
-         setIsOpen(false);
-       }
-         const handleLogout = () => {
-           removeUserSession();
-           props.history.push("/adminlogin");
-         };
-useEffect(() => {
-  getSomething();
-  getSomething2();
-}, []);
- 
-    {
+      console.log(response.data);
+      setValue(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  var subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+  const handleLogout = () => {
+    removeUserSession();
+    props.history.push("/adminlogin");
+  };
+  useEffect(() => {
+    getSomething();
+    getSomething2();
+  }, []);
+
+  {
     return (
       <div>
         {" "}

@@ -5,7 +5,7 @@ const db = require("../../server").getDB;
 const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
- 
+
 const Teacher = require("../../models/Teachers");
 
 router.get("/", (req, res) => {
@@ -69,7 +69,7 @@ router.get("/dash", (req, res) => {
 
 router.get("/search22222", (req, res) => {
   let Qualification = req.query.name;
- let Qualification2 = req.query.name;
+  let Qualification2 = req.query.name;
   let Price = req.query.price;
   let Time = req.query.time;
   let Day = req.query.day;
@@ -112,13 +112,7 @@ router.get("/search2", (req, res) => {
   let Time = req.query.time;
   let Day = req.query.day;
   let sep = "_";
-  let DayTime = Day + sep + Time;
-  console.log("search query:");
-  console.log(Price);
-  console.log(Qualification);
-  console.log(Time);
-  console.log(Day);
-  console.log("---");
+
   if (!Qualification && !Price && !Day && !Time) {
     Teacher.find({})
       .sort({ date: -1 })
@@ -236,6 +230,7 @@ router.get("/search2", (req, res) => {
       .sort({ date: -1 })
       .then((teachers) => res.json(teachers));
   }
+  // res.json();
 });
 //Add teacher schedule details to database
 router.put("/ids", function (req, res) {
@@ -370,43 +365,43 @@ router.put("/booked", function (req, res) {
   console.log(req.query.index, "index");
   console.log("buttonid:", buttonid);
 
-  Teacher.findOne({ "schedule._id": new ObjectId(buttonid) }, function (
-    err,
-    foundObject
-  ) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(foundObject.schedule._id, "SUBJ");
-      if ((foundObject.schedule._id = buttonid)) {
-        console.log(foundObject.schedule._id, "---------");
+  Teacher.findOne(
+    { "schedule._id": new ObjectId(buttonid) },
+    function (err, foundObject) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(foundObject.schedule._id, "SUBJ");
+        if ((foundObject.schedule._id = buttonid)) {
+          console.log(foundObject.schedule._id, "---------");
 
-        var data = {
-          _id: foundObject.schedule._id,
-          Subject: req.query.Subject,
-          Day: req.query.Day,
-          Date: req.query.Date,
-          Time: req.query.Time,
-          Status: "Booked",
-          Price: req.query.Price,
-          Username: req.query.username,
-          Classid: req.query.classid,
-          Studentid: ObjectId(req.query.userid),
-        };
-        Teacher.updateOne(
-          { _id: new ObjectId(id) },
-          { $push: { bookings: data } },
-          function (err, updatedObj) {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log("Succefully add booking to teacher");
+          var data = {
+            _id: foundObject.schedule._id,
+            Subject: req.query.Subject,
+            Day: req.query.Day,
+            Date: req.query.Date,
+            Time: req.query.Time,
+            Status: "Booked",
+            Price: req.query.Price,
+            Username: req.query.username,
+            Classid: req.query.classid,
+            Studentid: ObjectId(req.query.userid),
+          };
+          Teacher.updateOne(
+            { _id: new ObjectId(id) },
+            { $push: { bookings: data } },
+            function (err, updatedObj) {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log("Succefully add booking to teacher");
+              }
             }
-          }
-        );
+          );
+        }
       }
     }
-  });
+  );
 });
 //Deleting method
 router.delete("/id", (req, res) => {
@@ -416,7 +411,7 @@ router.delete("/id", (req, res) => {
 });
 //Deleting method
 router.delete("/teacherdelete", (req, res) => {
-  console.log("HERE IN DELEE")
+  console.log("HERE IN DELEE");
   Teacher.findById(req.query.id)
     .then((teacher) => teacher.remove().then(() => res.json({ success: true })))
     .catch((err) => res.status(404).json({ success: false }));

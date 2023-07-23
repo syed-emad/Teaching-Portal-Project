@@ -13,7 +13,7 @@ const items = require("./routes/api/items");
 const teachers = require("./routes/api/teachers");
 const users = require("./routes/api/users");
 const users2 = require("./routes/api/users2");
-const admin= require("./routes/api/admin");
+const admin = require("./routes/api/admin");
 //const teachers2 = require("./routes/api/teachers2");
 const auth = require("./routes/api/auth");
 const app = express();
@@ -28,17 +28,17 @@ app.use(bodyParser.json());
 //Bodyparser Middleware
 app.use(express.json());
 
-app.use('/uploads',express.static('uploads')); //makes this folder publicly available
+app.use("/uploads", express.static("uploads")); //makes this folder publicly available
 
 const Users = require("./models/Users");
 const Teachers = require("./models/Teachers");
-const Admin =require("./models/Admin");
-const usersession=require("./models/UserSession");
+const Admin = require("./models/Admin");
+const usersession = require("./models/UserSession");
 //DB Config
-const db = config.get("mongoURI");
+const connUri = process.env.DB_URI;
 //Connect to Mongo
 mongoose
-  .connect(db, {
+  .connect(connUri, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -53,7 +53,7 @@ app.use("/api/teachers", teachers);
 app.use("/api/users", users);
 app.use("/api/users2", users2);
 app.use("/api/auth", auth);
-app.use("/admin", require("./admin"));  
+app.use("/admin", require("./admin"));
 app.use(function (req, res, next) {
   // check header or url parameters or post parameters for token
   var token = req.headers["authorization"];
@@ -73,7 +73,7 @@ app.use(function (req, res, next) {
   });
 });
 // request handlers
- 
+
 // validate the user credentials
 app.post("/users/signin", function (req, res) {
   const user = req.body.email;
@@ -105,18 +105,17 @@ app.post("/users/signin", function (req, res) {
 app.post("/x/signin", (req, res) => {
   const { email, password } = req.body;
 
-  
   if (!email || !password) {
     return res.status(404).json({ msg: "please enter everthing" });
   }
-  
+
   Users.findOne({ email })
     .exec()
     .then((user) => {
       if (!user) {
         return res.status(400).json({ msg: "user does not exist" });
       }
- 
+
       bcrypt.compare(password, user.password, (err, result) => {
         if (err) {
           return res.status(404).json({
@@ -150,9 +149,8 @@ app.post("/x/signin", (req, res) => {
           message: "Auth failed,incorrect password",
         });
       });
-      
     })
-     
+
     .catch((err) => {
       console.log(err);
       res.status(500).json({
@@ -165,7 +163,7 @@ app.post("/x/signin/teachers", (req, res) => {
   if (!email || !password) {
     return res.status(404).json({ msg: "please enter everthing" });
   }
-  
+
   Teachers.findOne({ email })
     .exec()
     .then((user) => {
@@ -192,7 +190,6 @@ app.post("/x/signin/teachers", (req, res) => {
 
         token: token,
       });
-      
     })
     .catch((err) => {
       console.log(err);
@@ -272,16 +269,19 @@ app.post("/x/signin/admin", (req, res) => {
     });
 });
 
-
 const http = require("http");
- 
+
 const socketio = require("socket.io");
 
-const { addUser, removeUser, getUser, getUsersInRoom } = require("./routes/api/userfunctions");
+const {
+  addUser,
+  removeUser,
+  getUser,
+  getUsersInRoom,
+} = require("./routes/api/userfunctions");
 
 const router = require("./router");
 
- 
 const server = http.createServer(app);
 const io = socketio(server);
 
