@@ -9,6 +9,12 @@ Styling: Online template.
 Backend: Node js.
 Database:MoongoDb.
 
+### Overview
+
+## Main Page
+
+![Main Page](image.png)
+
 ### Setup
 
 ### 1. Clone your repository
