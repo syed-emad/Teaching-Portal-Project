@@ -14,6 +14,14 @@ Database:MoongoDb.
 ## Main Page
 
 ![Main Page](image.png)
+![Students can filter teacher that fits there need](image-1.png)
+![Students can see teacher details and book a slot with them](image-2.png)
+![Student can only book available slot](image-3.png)
+![You have to login to book](image-4.png)
+![Once Logged in you will be redirected to payment page](image-5.png)
+![User will be shown booking confirmation](image-6.png)
+![When a student books session it is shown to teacher](image-7.png)
+![Student can also see the schudule](image-8.png)
 
 ### Setup
 

@@ -16,18 +16,17 @@ function DashboardMain(props) {
   var buttonid;
   var classid;
   var buttonid2;
-var url_string = window.location.href;
-var url = new URL(url_string);
-var name = url.searchParams.get("name");
-var id = url.searchParams.get("id");
-const [searchedsubject, setName] = useState("");
-const [searcheddate, setDate] = useState("");
-const [searchedprice, setPrice] = useState("");
-const [searchedtime, setTime] = useState("");
-const [searchedday, setDay] = useState("");
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var name = url.searchParams.get("name");
+  var id = url.searchParams.get("id");
+  const [searchedsubject, setName] = useState("");
+  const [searcheddate, setDate] = useState("");
+  const [searchedprice, setPrice] = useState("");
+  const [searchedtime, setTime] = useState("");
+  const [searchedday, setDay] = useState("");
 
-const Teacher = getUser();
-
+  const Teacher = getUser();
 
   console.log(name);
   console.log("ID:");
@@ -35,7 +34,6 @@ const Teacher = getUser();
   const [value, setValue] = useState(null);
 
   async function getSomething() {
-
     try {
       const response = await axios.get(`/api/teachers/dash?id=${id}`);
       setValue(response.data);
@@ -48,25 +46,24 @@ const Teacher = getUser();
   function getSomething2() {
     bookfunction();
     refreshPage();
-    
   }
-  function deleteRecord(id){
-    buttonid=id;
+  function deleteRecord(id) {
+    buttonid = id;
     deleteSchedule();
     refreshPage();
   }
 
-  function cancelClass(bid,cid){
-    classid=cid;
-    buttonid2=bid;
-    
+  function cancelClass(bid, cid) {
+    classid = cid;
+    buttonid2 = bid;
+
     cancelTeacher();
     cancelStudent();
     book();
     refreshPage();
   }
 
-  async function cancelTeacher(){
+  async function cancelTeacher() {
     try {
       const response = await axios.put(
         `/api/teachers/cancel?id=${id}&classid=${classid}`
@@ -76,9 +73,8 @@ const Teacher = getUser();
     } catch (error) {
       console.error(error);
     }
-
   }
-  async function cancelStudent(){
+  async function cancelStudent() {
     try {
       const response = await axios.put(
         `/api/users/cancel2?id=${id}&classid=${classid}`
@@ -88,9 +84,8 @@ const Teacher = getUser();
     } catch (error) {
       console.error(error);
     }
-
   }
-  async function book(){
+  async function book() {
     try {
       const response = await axios.put(
         `/api/teachers/book?id=${id}&buttonid=${buttonid2}`
@@ -101,7 +96,7 @@ const Teacher = getUser();
       console.error(error);
     }
   }
-  async function deleteSchedule(){
+  async function deleteSchedule() {
     try {
       const response = await axios.delete(
         `/api/teachers/delete?id=${id}&buttonid=${buttonid}`
@@ -313,22 +308,7 @@ const Teacher = getUser();
                       </div>
                     </div>
                   </div>
-                  <div>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. A
-                    sed nobis ut exercitationem atque accusamus sit natus
-                    officiis totam blanditiis at eum nemo, nulla et quae eius
-                    culpa eveniet voluptatibus repellat illum tenetur, facilis
-                    porro. Quae fuga odio perferendis itaque alias sint, beatae
-                    non maiores magnam ad, veniam tenetur atque ea
-                    exercitationem earum eveniet totam ipsam magni tempora
-                    aliquid ullam possimus? Tempora nobis facere porro,
-                    praesentium magnam provident accusamus temporibus!
-                    Repellendus harum veritatis itaque molestias repudiandae ea
-                    corporis maiores non obcaecati libero, unde ipsum
-                    consequuntur aut consectetur culpa magni omnis vero odio
-                    suscipit vitae dolor quod dignissimos perferendis eos?
-                    Consequuntur!
-                  </div>
+
                   <div>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. A
                     sed nobis ut exercitationem atque accusamus sit natus
@@ -689,8 +669,7 @@ const Teacher = getUser();
               </div>
             </div>
           );
-
-      })}
+        })}
     </div>
   );
 }

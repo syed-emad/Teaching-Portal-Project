@@ -24,7 +24,7 @@ function UserDashboardMain(props) {
   const [searchedprice, setPrice] = useState("");
   const [searchedtime, setTime] = useState("");
   const [searchedday, setDay] = useState("");
- 
+
   var buttonid2;
   var scheduleid;
   var classid;
@@ -44,16 +44,16 @@ function UserDashboardMain(props) {
       console.error(error);
     }
   }
-  
-  function cancelClass(cid,sid){
-    classid=cid;
-    scheduleid=sid;
+
+  function cancelClass(cid, sid) {
+    classid = cid;
+    scheduleid = sid;
     cancelTeacher();
     cancelStudent();
     book();
     refreshPage();
   }
-  async function cancelTeacher(){
+  async function cancelTeacher() {
     try {
       const response = await axios.put(
         `/api/teachers/cancel2?id=${uid}&classid=${classid}`
@@ -63,9 +63,8 @@ function UserDashboardMain(props) {
     } catch (error) {
       console.error(error);
     }
-
   }
-  async function cancelStudent(){
+  async function cancelStudent() {
     try {
       const response = await axios.put(
         `/api/users/cancel?id=${uid}&classid=${classid}`
@@ -75,9 +74,8 @@ function UserDashboardMain(props) {
     } catch (error) {
       console.error(error);
     }
-
   }
-  async function book(){
+  async function book() {
     try {
       const response = await axios.put(
         `/api/teachers/book2?id=${uid}&scheduleid=${scheduleid}`
@@ -217,53 +215,9 @@ function UserDashboardMain(props) {
                   </div>
                 </div>
                 <div className="info">
+                  <div></div>
+
                   <div>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. A
-                    sed nobis ut exercitationem atque accusamus sit natus
-                    officiis totam blanditiis at eum nemo, nulla et quae eius
-                    culpa eveniet voluptatibus repellat illum tenetur, facilis
-                    porro. Quae fuga odio perferendis itaque alias sint, beatae
-                    non maiores magnam ad, veniam tenetur atque ea
-                    exercitationem earum eveniet totam ipsam magni tempora
-                    aliquid ullam possimus? Tempora nobis facere porro,
-                    praesentium magnam provident accusamus temporibus!
-                    Repellendus harum veritatis itaque molestias repudiandae ea
-                    corporis maiores non obcaecati libero, unde ipsum
-                    consequuntur aut consectetur culpa magni omnis vero odio
-                    suscipit vitae dolor quod dignissimos perferendis eos?
-                    Consequuntur!
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. A
-                    sed nobis ut exercitationem atque accusamus sit natus
-                    officiis totam blanditiis at eum nemo, nulla et quae eius
-                    culpa eveniet voluptatibus repellat illum tenetur, facilis
-                    porro. Quae fuga odio perferendis itaque alias sint, beatae
-                    non maiores magnam ad, veniam tenetur atque ea
-                    exercitationem earum eveniet totam ipsam magni tempora
-                    aliquid ullam possimus? Tempora nobis facere porro,
-                    praesentium magnam provident accusamus temporibus!
-                    Repellendus harum veritatis itaque molestias repudiandae ea
-                    corporis maiores non obcaecati libero, unde ipsum
-                    consequuntur aut consectetur culpa magni omnis vero odio
-                    suscipit vitae dolor quod dignissimos perferendis eos?
-                    Consequuntur!
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. A
-                    sed nobis ut exercitationem atque accusamus sit natus
-                    officiis totam blanditiis at eum nemo, nulla et quae eius
-                    culpa eveniet voluptatibus repellat illum tenetur, facilis
-                    porro. Quae fuga odio perferendis itaque alias sint, beatae
-                    non maiores magnam ad, veniam tenetur atque ea
-                    exercitationem earum eveniet totam ipsam magni tempora
-                    aliquid ullam possimus? Tempora nobis facere porro,
-                    praesentium magnam provident accusamus temporibus!
-                    Repellendus harum veritatis itaque molestias repudiandae ea
-                    corporis maiores non obcaecati libero, unde ipsum
-                    consequuntur aut consectetur culpa magni omnis vero odio
-                    suscipit vitae dolor quod dignissimos perferendis eos?
-                    Consequuntur!
                     <br></br>
                     <br></br>
                     <hr></hr>
@@ -277,7 +231,6 @@ function UserDashboardMain(props) {
                           <table>
                             <thead>
                               <tr className="row100 head">
-                              
                                 <th className="cell100 column1">
                                   Teacher name
                                 </th>
@@ -285,13 +238,22 @@ function UserDashboardMain(props) {
                                 <th className="cell100 column2">Time</th>
                                 {/* <th className="cell100 column4">Day</th> */}
                                 <th className="cell100 column5">Date</th>
-                                <th className="cell100 column5"style={{paddingLeft:"25px"}}> Price</th>
-                                <th className="cell100 column2" style={{paddingLeft:"20px"}}>
+                                <th
+                                  className="cell100 column5"
+                                  style={{ paddingLeft: "25px" }}
+                                >
+                                  {" "}
+                                  Price
+                                </th>
+                                <th
+                                  className="cell100 column2"
+                                  style={{ paddingLeft: "20px" }}
+                                >
                                   {" "}
                                   ClassID
                                 </th>{" "}
-                                <th className="cell100 column2">  </th>
-                                <th className="cell100 column2">  </th>
+                                <th className="cell100 column2"> </th>
+                                <th className="cell100 column2"> </th>
                               </tr>
                             </thead>
                           </table>
@@ -384,7 +346,10 @@ function UserDashboardMain(props) {
                         </div>
                       </div>
                     </div>
-                    <br/><br/><br/><br/>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                   </div>
                 </div>
               </div>
