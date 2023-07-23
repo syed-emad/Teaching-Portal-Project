@@ -33,7 +33,7 @@ Database:MoongoDb.
 
 ## Once Logged in you will be redirected to payment page
 
-![Once Logged in you will be redirected to payment page](image-5.png)
+![Once Logged in you will be redirected to payment page](image-9.png)
 
 ## User will be shown booking confirmation
 
