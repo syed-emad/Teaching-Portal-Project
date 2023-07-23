@@ -1,3 +1,7 @@
+### Description
+
+Professor is an online portal that allows students to find a teacher who best fits their requirements. Students can book sessions with teachers to study. They can pay per session. Both students and teachers have separate dashboards that they can use to keep track of their classes. Online sessions are conducted through video streaming achieved through Agora API.
+
 ### Setup
 
 ### 1. Clone your repository
