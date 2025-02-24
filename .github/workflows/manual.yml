@@ -1,0 +1,17 @@
+name: Mark stale branches
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs daily at midnight UTC
+  workflow_dispatch:
+jobs:
+  stale-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for stale branches
+        uses: crs-k/stale-branches@v7.0.0
+        with:
+          days-before-stale: 1
+          days-before-delete: 180
+          dry-run: true
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
